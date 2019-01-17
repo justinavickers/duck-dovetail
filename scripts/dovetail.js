@@ -2,6 +2,7 @@
     Function to convert a JavaScript object representation
     of a product to an HTML representation
 */
+
 const createProductHTML = product => `
     <section class="product">
       <header class="product__header">
@@ -55,7 +56,13 @@ for (button of allButtons) {
             // Only if something was found, add the object to the
             // shopping cart array
             if (foundProduct !== null) {
-                shoppingCart.push(foundProduct)
+                if (foundProduct.quantity > 0 ) {
+                    foundProduct.quantity++
+                } else {
+                    shoppingCart.push(foundProduct)
+                    foundProduct.quantity = 0
+                    foundProduct.quantity++
+                }
                 displayShoppingCart()
             }
 
